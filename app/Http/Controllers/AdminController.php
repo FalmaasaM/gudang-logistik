@@ -40,15 +40,6 @@ class AdminController extends Controller
         ]
         );
 
-        // Menggunakan laravel eloquent
-        // Admin::create([
-        //     'id_admin' => $request->id_admin,
-        //     'nama_admin' => $request->nama_admin,
-        //     'alamat' => $request->alamat,
-        //     'username' => $request->username,
-        //     'password' => Hash::make($request->password),
-        // ]);
-
         return redirect()->route('admin.index')->with('success', 'Data Admin berhasil disimpan');
     }
 
@@ -79,15 +70,7 @@ class AdminController extends Controller
         ]
         );
 
-        // Menggunakan laravel eloquent
-        // Admin::where('id_admin', $id)->update([
-        //     'id_admin' => $request->id_admin,
-        //     'nama_admin' => $request->nama_admin,
-        //     'alamat' => $request->alamat,
-        //     'username' => $request->username,
-        //     'password' => Hash::make($request->password),
-        // ]);
-
+  
         return redirect()->route('admin.index')->with('success', 'Data Admin berhasil diubah');
     }
 
@@ -95,8 +78,6 @@ class AdminController extends Controller
         // Menggunakan Query Builder Laravel dan Named Bindings untuk valuesnya
         DB::delete('DELETE FROM admin WHERE id_admin = :id_admin', ['id_admin' => $id]);
 
-        // Menggunakan laravel eloquent
-        // Admin::where('id_admin', $id)->delete();
 
         return redirect()->route('admin.index')->with('success', 'Data Admin berhasil dihapus');
     }

@@ -30,25 +30,19 @@ class GudangController extends Controller
             ->with('datasrecycle', $datasrecycle);   
        }
     }
-    // public function join(Request $request) {
-    //     if($request->has('search')){
-    //         $datas = DB::select('SELECT pembeli.id_pembeli,alat.id_alat,alat.nama_alat,alat.harga,pembeli.kuantiti,pembeli.total,pembeli.tanggal,produk.nama_produk,produk.jenis_biji FROM `alat` LEFT JOIN pembeli ON pembeli.id_pembeli = alat.id_pembeli LEFT JOIN produk on produk.id_produk = alat.id_produk WHERE produk.jenis_biji like :search',[
-    //             'search'=>'%'.$request->search.'%',
-    //         ]);
-
-    //     return view('join')
-    //         ->with('datas', $datas);
-    //     }
-    //     else {
-    //         $datas = DB::select('SELECT pembeli.id_pembeli,alat.id_alat,alat.nama_alat,alat.harga,pembeli.kuantiti,pembeli.total,pembeli.tanggal,produk.nama_produk,produk.jenis_biji FROM `alat` LEFT JOIN pembeli ON pembeli.id_pembeli = alat.id_pembeli LEFT JOIN produk on produk.id_produk = alat.id_produk');
-
-    //     return view('join')
-    //         ->with('datas', $datas);
-    //     }
-    // }
     public function create() {
         return view('gudang.add');
     }
+
+    public function riwayat(){
+        $datas = DB::select('select * from gudang WHERE recycle=0');
+        $datasrecycle = DB::select('select * from gudang WHERE recycle=1');
+
+        return view('gudang.riwayat')
+            ->with('datas', $datas)
+            ->with('datasrecycle', $datasrecycle);   
+       
+}
 
     public function store(Request $request) {
         $request->validate([
@@ -133,6 +127,6 @@ class GudangController extends Controller
     }
     public function restore($id) {
         DB::update('UPDATE gudang set recycle = 0 WHERE id_gudang = :id_gudang', ['id_gudang' => $id]);
-        return redirect()->route('gudang.index')->with('success', 'Data gudang berhasil dihapus');
+        return redirect()->route('gudang.index')->with('success', 'Data gudang berhasil direstore');
     }
 }

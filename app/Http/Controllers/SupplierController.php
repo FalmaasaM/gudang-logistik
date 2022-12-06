@@ -36,15 +36,7 @@ class SupplierController extends Controller
         ]
         );
 
-        // Menggunakan laravel eloquent
-        // Admin::create([
-        //     'id_admin' => $request->id_admin,
-        //     'nama_admin' => $request->nama_admin,
-        //     'alamat' => $request->alamat,
-        //     'username' => $request->username,
-        //     'password' => Hash::make($request->password),
-        // ]);
-
+   
         return redirect()->route('supplier.index')->with('success', 'Data supplier berhasil disimpan');
     }
 
@@ -73,14 +65,7 @@ class SupplierController extends Controller
         ]
         );
 
-        // Menggunakan laravel eloquent
-        // Admin::where('id_admin', $id)->update([
-        //     'id_admin' => $request->id_admin,
-        //     'nama_admin' => $request->nama_admin,
-        //     'total' => $request->total,
-        //     'username' => $request->username,
-        //     'password' => Hash::make($request->password),
-        // ]);
+   
 
         return redirect()->route('supplier.index')->with('success', 'Data supplier berhasil diubah');
     }
@@ -88,9 +73,6 @@ class SupplierController extends Controller
     public function delete($id) {
         // Menggunakan Query Builder Laravel dan Named Bindings untuk valuesnya
         DB::delete('DELETE FROM supplier WHERE no_order = :no_order', ['no_order' => $id]);
-
-        // Menggunakan laravel eloquent
-        // Admin::where('id_pembeli', $id)->delete();
 
         return redirect()->route('supplier.index')->with('success', 'Data supplier berhasil dihapus');
     }

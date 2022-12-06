@@ -50,6 +50,16 @@ class BarangController extends Controller
         return view('barang.add');
     }
 
+    public function riwayat(){
+            $datas = DB::select('select * from barang WHERE recycle=0');
+            $datasrecycle = DB::select('select * from barang WHERE recycle=1');
+    
+            return view('barang.riwayat')
+                ->with('datas', $datas)
+                ->with('datasrecycle', $datasrecycle);   
+           
+    }
+
     public function store(Request $request) {
         $request->validate([
             'id_barang' => 'required',
@@ -70,14 +80,7 @@ class BarangController extends Controller
         ]
         );
 
-        // Menggunakan laravel eloquent
-        // Admin::create([
-        //     'id_admin' => $request->id_admin,
-        //     'nama_admin' => $request->nama_admin,
-        //     'alamat' => $request->alamat,
-        //     'username' => $request->username,
-        //     'password' => Hash::make($request->password),
-        // ]);
+ 
 
         return redirect()->route('barang.index')->with('success', 'Data barang berhasil disimpan');
     }
@@ -109,14 +112,7 @@ class BarangController extends Controller
         ]
         );
 
-        // Menggunakan laravel eloquent
-        // Admin::where('id_admin', $id)->update([
-        //     'id_admin' => $request->id_admin,
-        //     'nama_admin' => $request->nama_admin,
-        //     'jenis_biji' => $request->jenis_biji,
-        //     'username' => $request->username,
-        //     'password' => Hash::make($request->password),
-        // ]);
+ 
 
         return redirect()->route('barang.index')->with('success', 'Data barang berhasil diubah');
     }
@@ -131,6 +127,6 @@ class BarangController extends Controller
     }
     public function restore($id) {
         DB::update('UPDATE barang set recycle = 0 WHERE id_barang = :id_barang', ['id_barang' => $id]);
-        return redirect()->route('barang.index')->with('success', 'Data barang berhasil dihapus');
+        return redirect()->route('barang.index')->with('success', 'Data barang berhasil direstore');
     }
 }

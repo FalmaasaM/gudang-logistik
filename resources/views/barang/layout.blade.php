@@ -50,6 +50,7 @@
                                 <li class="nav-item">
                                     <a class="nav-link text-white" href="{{ route('join') }}">{{ __('Stok Gudang') }}</a>
                                 </li>
+                                
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">

@@ -6,6 +6,7 @@
 
 <a href="{{ route('supplier.create') }}" type="button" class="btn btn-success rounded-3">Tambah Data</a>
 
+
 @if($message = Session::get('success'))
     <div class="alert alert-success mt-3" role="alert">
         {{ $message }}

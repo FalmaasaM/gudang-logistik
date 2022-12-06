@@ -24,6 +24,7 @@ use Illuminate\Support\Facades\Route;
 Route :: get("/",[LoginController::class,'showLoginForm'])->name('login');
 Route::get('stokgudang', [BarangController::class, 'join'])->name('join');
 
+
 Route ::prefix("supplier")->group(function(){
 Route::get('/', [SupplierController::class, 'index'])->name('supplier.index');
 Route::get('add', [SupplierController::class, 'create'])->name('supplier.create');
@@ -35,6 +36,7 @@ Route::post('delete/{id}', [SupplierController::class, 'delete'])->name('supplie
 Route ::prefix("barang")->group(function(){
 Route::get('/', [BarangController::class, 'index'])->name('barang.index');
 Route::get('add', [BarangController::class, 'create'])->name('barang.create');
+Route::get('riwayat', [BarangController::class, 'riwayat'])->name('barang.riwayat');
 Route::post('store', [BarangController::class, 'store'])->name('barang.store');
 Route::get('edit/{id}', [BarangController::class, 'edit'])->name('barang.edit');
 Route::post('update/{id}', [BarangController::class, 'update'])->name('barang.update');
@@ -45,6 +47,7 @@ Route::get('restore/{id}', [BarangController::class, 'restore'])->name('barang.r
 Route ::prefix("gudang")->group(function(){
 Route::get('/', [GudangController::class, 'index'])->name('gudang.index');
 Route::get('add', [GudangController::class, 'create'])->name('gudang.create');
+Route::get('riwayat', [GudangController::class, 'riwayat'])->name('gudang.riwayat');
 Route::post('store', [GudangController::class, 'store'])->name('gudang.store');
 Route::get('edit/{id}', [GudangController::class, 'edit'])->name('gudang.edit');
 Route::post('update/{id}', [GudangController::class, 'update'])->name('gudang.update');
